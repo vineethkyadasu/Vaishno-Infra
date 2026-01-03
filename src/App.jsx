@@ -1,23 +1,36 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
+
+// Components
+import Header from './components/Header'
+import Footer from './components/Footer'
+
+// Pages
+import Home from './pages/Home'
+import About from './pages/About'
+import Services from './pages/Services'
+import Contact from './pages/Contact'
 
 function App() {
+  const location = useLocation()
+
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={
-          <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-            <div className="text-center">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                Admin Dashboard
-              </h1>
-            </div>
-          </div>
-        } />
-      </Routes>
+      <Header />
+      <main>
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </AnimatePresence>
+      </main>
+      <Footer />
     </div>
   )
 }
 
 export default App
-

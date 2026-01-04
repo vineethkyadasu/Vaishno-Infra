@@ -74,7 +74,7 @@ const CTASection = () => {
                                 </motion.button>
                             </Link>
 
-                            <a href="tel:+919876543210">
+                            <a href="tel:+17135550123">
                                 <motion.button
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}

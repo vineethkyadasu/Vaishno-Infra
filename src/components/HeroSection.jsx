@@ -93,9 +93,9 @@ const HeroSection = () => {
             {/* Content */}
             <motion.div
                 style={{ opacity }}
-                className="relative z-10 container-custom text-center lg:text-left"
+                className="relative z-10 container-custom text-center"
             >
-                <div className="max-w-4xl mx-auto lg:mx-0">
+                <div className="w-full max-w-5xl mx-auto">
                     <motion.div
                         variants={containerVariants}
                         initial="hidden"
@@ -130,13 +130,13 @@ const HeroSection = () => {
                         </motion.h1>
 
                         {/* Description */}
-                        <motion.p variants={itemVariants} className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        <motion.p variants={itemVariants} className="text-lg md:text-xl text-gray-300 mb-10 max-w-4xl mx-auto leading-relaxed">
                             We transform ambitious visions into architectural masterpieces. With cutting-edge technology and
                             unmatched expertise, we deliver construction excellence that stands the test of time.
                         </motion.p>
 
                         {/* CTA Buttons */}
-                        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-16">
+                        <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
                             <Link to="/contact">
                                 <motion.button
                                     whileHover={{ scale: 1.02 }}
@@ -169,7 +169,7 @@ const HeroSection = () => {
                                     key={index}
                                     variants={itemVariants}
                                     whileHover={{ scale: 1.05, y: -5 }}
-                                    className="text-center lg:text-left p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary-500/50 transition-colors"
+                                    className="text-center p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-primary-500/50 transition-colors"
                                 >
                                     <motion.div
                                         initial={{ scale: 0 }}

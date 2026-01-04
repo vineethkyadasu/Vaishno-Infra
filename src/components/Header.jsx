@@ -13,6 +13,7 @@ const Header = () => {
         { name: 'Home', path: '/' },
         { name: 'About', path: '/about' },
         { name: 'Services', path: '/services' },
+        { name: 'Careers', path: '/careers' },
         { name: 'Contact', path: '/contact' },
     ];
 
@@ -35,14 +36,14 @@ const Header = () => {
                 animate={{ y: 0 }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled
-                        ? 'bg-white/95 backdrop-blur-md shadow-lg py-3'
-                        : 'bg-transparent py-5'
+                    ? 'bg-white/95 backdrop-blur-md shadow-lg py-3'
+                    : 'bg-transparent py-5'
                     }`}
             >
                 <div className="container-custom">
                     <div className="flex items-center justify-between">
                         {/* Logo */}
-                        <Link to="/" className="relative z-10">
+                        <Link to="/" className="relative z-10 bg-white rounded-lg p-1 shadow-sm">
                             <motion.img
                                 src={logo}
                                 alt="Vaishno Infra"
@@ -64,10 +65,10 @@ const Header = () => {
                                     <Link
                                         to={link.path}
                                         className={`relative font-medium text-base transition-colors duration-300 ${location.pathname === link.path
-                                                ? 'text-primary-500'
-                                                : isScrolled
-                                                    ? 'text-navy-800 hover:text-primary-500'
-                                                    : 'text-navy-800 hover:text-primary-500'
+                                            ? 'text-primary-500'
+                                            : isScrolled
+                                                ? 'text-navy-800 hover:text-primary-500'
+                                                : 'text-white hover:text-primary-300'
                                             }`}
                                     >
                                         {link.name}
@@ -142,8 +143,8 @@ const Header = () => {
                                             <Link
                                                 to={link.path}
                                                 className={`block py-3 px-4 rounded-lg text-lg font-medium transition-all ${location.pathname === link.path
-                                                        ? 'bg-primary-50 text-primary-500'
-                                                        : 'text-navy-800 hover:bg-gray-50'
+                                                    ? 'bg-primary-50 text-primary-500'
+                                                    : 'text-navy-800 hover:bg-gray-50'
                                                     }`}
                                             >
                                                 {link.name}

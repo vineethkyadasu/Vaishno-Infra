@@ -52,8 +52,8 @@ const Contact = () => {
         {
             icon: HiPhone,
             title: 'Phone',
-            details: ['+91 98765 43210', '+91 98765 43211'],
-            action: 'tel:+919876543210',
+            details: ['+1 (713) 555-0123', '+1 (713) 555-0124'],
+            action: 'tel:+17135550123',
             color: 'from-primary-500 to-accent'
         },
         {
@@ -66,14 +66,14 @@ const Contact = () => {
         {
             icon: HiMapPin,
             title: 'Address',
-            details: ['123 Construction Avenue', 'Hyderabad, Telangana 500001'],
+            details: ['1200 Main Street, Suite 500', 'Houston, TX 77002'],
             action: '#',
             color: 'from-emerald-500 to-emerald-700'
         },
         {
             icon: HiClock,
             title: 'Working Hours',
-            details: ['Mon - Sat: 9:00 AM - 6:00 PM', 'Sunday: Closed'],
+            details: ['Mon - Fri: 8:00 AM - 5:00 PM', 'Saturday - Sunday: Closed'],
             action: '#',
             color: 'from-violet-500 to-violet-700'
         },
@@ -84,7 +84,7 @@ const Contact = () => {
         { icon: FaTwitter, href: '#', label: 'Twitter', color: 'hover:bg-sky-500' },
         { icon: FaLinkedinIn, href: '#', label: 'LinkedIn', color: 'hover:bg-blue-700' },
         { icon: FaInstagram, href: '#', label: 'Instagram', color: 'hover:bg-pink-600' },
-        { icon: FaWhatsapp, href: 'https://wa.me/919876543210', label: 'WhatsApp', color: 'hover:bg-green-500' },
+        { icon: FaWhatsapp, href: 'https://wa.me/17135550123', label: 'WhatsApp', color: 'hover:bg-green-500' },
     ];
 
     const containerVariants = {
@@ -229,7 +229,7 @@ const Contact = () => {
                                             value={formData.phone}
                                             onChange={handleChange}
                                             className="input-premium"
-                                            placeholder="+91 98765 43210"
+                                            placeholder="+1 (713) 555-0123"
                                         />
                                     </div>
                                     <div>
@@ -310,7 +310,7 @@ const Contact = () => {
                             {/* Map Placeholder */}
                             <div className="rounded-2xl overflow-hidden shadow-xl h-80 bg-gray-200 relative">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243647.3160tried4!2d78.24323005!3d17.412280849999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99daeaebd2c7%3A0xae93b78392bafbc2!2sHyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1704198000000!5m2!1sen!2sin"
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d443088.84123976464!2d-95.68142015625!3d29.817178899999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640b8b4488d8501%3A0xca0d02def365053b!2sHouston%2C%20TX!5e0!3m2!1sen!2sus!4v1704198000000!5m2!1sen!2sus"
                                     width="100%"
                                     height="100%"
                                     style={{ border: 0 }}
@@ -353,11 +353,11 @@ const Contact = () => {
                                     Our team is available to handle your queries during business hours.
                                 </p>
                                 <a
-                                    href="tel:+919876543210"
+                                    href="tel:+17135550123"
                                     className="inline-flex items-center gap-2 bg-white text-primary-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
                                 >
                                     <HiPhone className="w-5 h-5" />
-                                    Call Now: +91 98765 43210
+                                    Call Now: +1 (713) 555-0123
                                 </a>
                             </div>
                         </motion.div>

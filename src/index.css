@@ -59,7 +59,13 @@ body {
 }
 
 @layer base {
-  h1, h2, h3, h4, h5, h6 {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     line-height: 1.2;
@@ -67,6 +73,7 @@ body {
 }
 
 @layer components {
+
   /* Premium Button Styles */
   .btn-primary {
     @apply inline-flex items-center justify-center px-8 py-4 text-white font-semibold rounded-lg transition-all duration-300;
@@ -119,7 +126,7 @@ body {
 
   /* Section Styles */
   .section-padding {
-    @apply py-20 lg:py-28 px-4 sm:px-6 lg:px-8;
+    @apply py-20 lg:py-28;
   }
 
   .section-title {
@@ -199,12 +206,27 @@ body {
 }
 
 @layer utilities {
+
   /* Stagger Animation Delays */
-  .delay-100 { animation-delay: 100ms; }
-  .delay-200 { animation-delay: 200ms; }
-  .delay-300 { animation-delay: 300ms; }
-  .delay-400 { animation-delay: 400ms; }
-  .delay-500 { animation-delay: 500ms; }
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .delay-400 {
+    animation-delay: 400ms;
+  }
+
+  .delay-500 {
+    animation-delay: 500ms;
+  }
 
   /* Text Shadow */
   .text-shadow {
@@ -213,7 +235,7 @@ body {
 
   /* Background Patterns */
   .bg-grid-pattern {
-    background-image: 
+    background-image:
       linear-gradient(rgba(6, 39, 80, 0.03) 1px, transparent 1px),
       linear-gradient(90deg, rgba(6, 39, 80, 0.03) 1px, transparent 1px);
     background-size: 50px 50px;
@@ -235,6 +257,7 @@ body {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -252,6 +275,11 @@ body {
 }
 
 @keyframes rotation {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }

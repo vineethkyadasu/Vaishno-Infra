@@ -35,7 +35,7 @@ const About = () => {
         { year: '2012', event: 'First Major Project', description: 'Completed our first commercial complex' },
         { year: '2016', event: '100+ Projects', description: 'Milestone of 100 successful project deliveries' },
         { year: '2020', event: 'Industry Recognition', description: 'Received multiple awards for excellence' },
-        { year: '2024', event: 'Expansion', description: 'Expanded operations across India' },
+        { year: '2024', event: 'Expansion', description: 'Expanded operations across the United States' },
     ];
 
     const containerVariants = {
@@ -119,8 +119,8 @@ const About = () => {
                             </motion.h2>
                             <motion.p variants={itemVariants} className="text-gray-600 mb-6 leading-relaxed">
                                 Founded in 2009, Vaishno Infra began with a simple yet powerful vision: to redefine
-                                construction standards in India. What started as a small team of passionate engineers
-                                has grown into one of the most trusted construction companies in the region.
+                                construction standards in the United States. What started as a small team of passionate engineers
+                                has grown into one of the most trusted construction companies in the nation.
                             </motion.p>
                             <motion.p variants={itemVariants} className="text-gray-600 mb-8 leading-relaxed">
                                 Today, we proudly stand as industry leaders, having completed over 500 projects across
@@ -174,7 +174,7 @@ const About = () => {
                             </div>
                             <h3 className="text-2xl font-bold text-navy-800 mb-4">Our Vision</h3>
                             <p className="text-gray-600 leading-relaxed">
-                                To be the most trusted and innovative construction company in India, recognized for
+                                To be the most trusted and innovative construction company in the United States, recognized for
                                 our commitment to sustainable building practices, cutting-edge technology, and
                                 transforming the landscape of infrastructure development.
                             </p>

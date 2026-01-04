@@ -21,6 +21,7 @@ const Footer = () => {
         { name: 'Home', path: '/' },
         { name: 'About Us', path: '/about' },
         { name: 'Services', path: '/services' },
+        { name: 'Careers', path: '/careers' },
         { name: 'Contact', path: '/contact' },
     ];
 
@@ -32,9 +33,9 @@ const Footer = () => {
     ];
 
     const contactInfo = [
-        { icon: HiPhone, text: '+91 98765 43210', href: 'tel:+919876543210' },
+        { icon: HiPhone, text: '+1 (713) 555-0123', href: 'tel:+17135550123' },
         { icon: HiEnvelope, text: 'info@vaishnoinfra.com', href: 'mailto:info@vaishnoinfra.com' },
-        { icon: HiMapPin, text: 'Hyderabad, India', href: '#' },
+        { icon: HiMapPin, text: 'Houston, TX', href: '#' },
     ];
 
     const socialLinks = [

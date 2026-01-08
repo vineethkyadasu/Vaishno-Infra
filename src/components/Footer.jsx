@@ -180,7 +180,7 @@ const Footer = () => {
                                 rel="noopener noreferrer"
                                 className="text-primary-400 hover:text-primary-300 transition-colors"
                             >
-                                Vikrin
+                                Vikrin2.0
                             </a>
                         </p>
                         <div className="flex gap-6">

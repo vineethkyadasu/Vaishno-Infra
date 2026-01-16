@@ -1,0 +1,23 @@
+RewriteEngine On
+RewriteBase /backend_php/
+
+# Handle CORS
+Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+Header set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
+
+# Handle Options method
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ - [R=200,L]
+
+# Remove .php extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# Routing for Projects
+# api/projects/123 -> api/projects/read_one.php?id=123
+RewriteRule ^api/projects/([0-9]+)$ api/projects/read_one.php?id=$1 [L,QSA]
+
+# Routing for Careers
+RewriteRule ^api/careers/([0-9]+)$ api/careers/read_one.php?id=$1 [L,QSA]

@@ -32,7 +32,7 @@ jobs:
       - name: Deploy Frontend via FTP
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          server: 145.79.212.7
+          server: ftp.u177524058.lawngreen-clam-479376.hostingersite.com
           username: u177524058.lawngreen-clam-479376.hostingersite.com
           password: Devima@0812
           local-dir: ./frontend/dist/
@@ -42,7 +42,7 @@ jobs:
       - name: Deploy Backend (PHP) via FTP
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
         with:
-          server: 145.79.212.7
+          server: ftp.u177524058.lawngreen-clam-479376.hostingersite.com
           username: u177524058.lawngreen-clam-479376.hostingersite.com
           password: Devima@0812
           local-dir: ./backend_php/

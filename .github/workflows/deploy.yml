@@ -36,7 +36,8 @@ jobs:
           username: u177524058.lawngreen-clam-479376.hostingersite.com
           password: Devima@0812
           local-dir: ./frontend/dist/
-          server-dir: /
+          server-dir: public_html/
+          dangerous-clean-slate: true
 
       - name: Deploy Backend (PHP) via FTP
         uses: SamKirkland/FTP-Deploy-Action@4.3.0
@@ -45,4 +46,4 @@ jobs:
           username: u177524058.lawngreen-clam-479376.hostingersite.com
           password: Devima@0812
           local-dir: ./backend_php/
-          server-dir: /backend_php/
+          server-dir: public_html/backend_php/

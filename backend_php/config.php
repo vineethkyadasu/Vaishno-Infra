@@ -1,9 +1,9 @@
 <?php
 // Database Configuration
 $host = 'localhost'; // Usually 'localhost' on shared hosting
-$dbname = 'u177524058_vaishnoinfra';
-$username = 'u177524058_vaishnoinfra';
-$password = 'Vaishnoinfra@123';
+$dbname = 'u177524058_vaishnofinfra';
+$username = 'u177524058_vaishnofinfra';
+$password = 'Vaishnofinfra@123';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);

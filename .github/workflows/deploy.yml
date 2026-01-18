@@ -49,12 +49,6 @@ jobs:
           **/.git*/**
           **/node_modules/**
           
-    # Install PHP dependencies
-    - name: Install Composer dependencies
-      working-directory: ./backend_php
-      run: |
-        composer install --no-dev --optimize-autoloader --no-interaction
-        
     # Deploy Backend PHP to public_html/api
     - name: Deploy Backend PHP to Hostinger
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5

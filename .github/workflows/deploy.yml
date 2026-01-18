@@ -31,27 +31,45 @@ jobs:
       env:
         CI: false
         GENERATE_SOURCEMAP: false
-        
-    # Deploy Frontend to public_html using SFTP
+
+    # Install lftp for FTP deployment
+    - name: Install lftp
+      run: sudo apt-get update && sudo apt-get install -y lftp
+
+    # Deploy Frontend using lftp with explicit FTP settings
     - name: Deploy Frontend to Hostinger
-      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-      with:
-        server: ${{ secrets.HOSTINGER_FTP_SERVER }}
-        username: ${{ secrets.HOSTINGER_FTP_USERNAME }}
-        password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
-        port: 22
-        local_path: ./frontend/dist/*
-        remote_path: /public_html/
-        sftp_only: true
-        
-    # Deploy Backend PHP to public_html/api using SFTP
+      env:
+        FTP_SERVER: ${{ secrets.HOSTINGER_FTP_SERVER }}
+        FTP_USERNAME: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+        FTP_PASSWORD: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+      run: |
+        lftp -e "
+          set ftp:ssl-allow yes;
+          set ftp:ssl-force no;
+          set ftp:passive-mode yes;
+          set net:timeout 60;
+          set net:max-retries 3;
+          set net:reconnect-interval-base 5;
+          open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER;
+          mirror --reverse --delete --verbose ./frontend/dist/ /public_html/;
+          bye
+        "
+
+    # Deploy Backend PHP using lftp
     - name: Deploy Backend PHP to Hostinger
-      uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-      with:
-        server: ${{ secrets.HOSTINGER_FTP_SERVER }}
-        username: ${{ secrets.HOSTINGER_FTP_USERNAME }}
-        password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
-        port: 22
-        local_path: ./backend_php/*
-        remote_path: /public_html/api/
-        sftp_only: true
+      env:
+        FTP_SERVER: ${{ secrets.HOSTINGER_FTP_SERVER }}
+        FTP_USERNAME: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+        FTP_PASSWORD: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+      run: |
+        lftp -e "
+          set ftp:ssl-allow yes;
+          set ftp:ssl-force no;
+          set ftp:passive-mode yes;
+          set net:timeout 60;
+          set net:max-retries 3;
+          set net:reconnect-interval-base 5;
+          open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER;
+          mirror --reverse --delete --verbose ./backend_php/ /public_html/api/;
+          bye
+        "

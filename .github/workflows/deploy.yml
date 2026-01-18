@@ -32,44 +32,28 @@ jobs:
         CI: false
         GENERATE_SOURCEMAP: false
 
-    # Install lftp for FTP deployment
-    - name: Install lftp
-      run: sudo apt-get update && sudo apt-get install -y lftp
+    # Install sshpass for password-based SSH
+    - name: Install sshpass
+      run: sudo apt-get update && sudo apt-get install -y sshpass
 
-    # Deploy Frontend using lftp with explicit FTP settings
+    # Deploy Frontend using rsync over SSH
     - name: Deploy Frontend to Hostinger
       env:
-        FTP_SERVER: ${{ secrets.HOSTINGER_FTP_SERVER }}
-        FTP_USERNAME: ${{ secrets.HOSTINGER_FTP_USERNAME }}
-        FTP_PASSWORD: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+        SSH_HOST: ${{ secrets.HOSTINGER_FTP_SERVER }}
+        SSH_USER: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+        SSH_PASS: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
       run: |
-        lftp -e "
-          set ftp:ssl-allow yes;
-          set ftp:ssl-force no;
-          set ftp:passive-mode yes;
-          set net:timeout 60;
-          set net:max-retries 3;
-          set net:reconnect-interval-base 5;
-          open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER;
-          mirror --reverse --delete --verbose ./frontend/dist/ /public_html/;
-          bye
-        "
+        sshpass -p "$SSH_PASS" rsync -avz --delete \
+          -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 65002" \
+          ./frontend/dist/ ${SSH_USER}@${SSH_HOST}:~/public_html/
 
-    # Deploy Backend PHP using lftp
+    # Deploy Backend PHP using rsync over SSH  
     - name: Deploy Backend PHP to Hostinger
       env:
-        FTP_SERVER: ${{ secrets.HOSTINGER_FTP_SERVER }}
-        FTP_USERNAME: ${{ secrets.HOSTINGER_FTP_USERNAME }}
-        FTP_PASSWORD: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+        SSH_HOST: ${{ secrets.HOSTINGER_FTP_SERVER }}
+        SSH_USER: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+        SSH_PASS: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
       run: |
-        lftp -e "
-          set ftp:ssl-allow yes;
-          set ftp:ssl-force no;
-          set ftp:passive-mode yes;
-          set net:timeout 60;
-          set net:max-retries 3;
-          set net:reconnect-interval-base 5;
-          open -u $FTP_USERNAME,$FTP_PASSWORD $FTP_SERVER;
-          mirror --reverse --delete --verbose ./backend_php/ /public_html/api/;
-          bye
-        "
+        sshpass -p "$SSH_PASS" rsync -avz --delete \
+          -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 65002" \
+          ./backend_php/ ${SSH_USER}@${SSH_HOST}:~/public_html/api/

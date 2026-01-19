@@ -128,7 +128,7 @@ const Applications = () => {
                                         <td className="px-6 py-4">
                                             <select
                                                 value={app.status}
-                                                onChange={(e) => handleStatusUpdate(app.id, e.target.value)}
+                                                onChange={(e) => handleStatusUpdate(app._id, e.target.value)}
                                                 className={`text-sm rounded-lg px-3 py-1 border-0 cursor-pointer focus:ring-2 focus:ring-admin-primary-500 ${app.status === 'Applied' ? 'bg-blue-500/20 text-blue-400' :
                                                     app.status === 'Reviewed' ? 'bg-yellow-500/20 text-yellow-400' :
                                                         app.status === 'Interview' ? 'bg-purple-500/20 text-purple-400' :
@@ -145,7 +145,7 @@ const Applications = () => {
                                         </td>
                                         <td className="px-6 py-4">
                                             <button
-                                                onClick={() => handleDelete(app.id)}
+                                                onClick={() => handleDelete(app._id)}
                                                 className="text-red-400 hover:text-red-300 hover:bg-red-400/10 p-2 rounded-lg transition-colors"
                                                 title="Delete Application"
                                             >

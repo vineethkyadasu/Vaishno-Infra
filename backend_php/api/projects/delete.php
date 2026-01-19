@@ -6,7 +6,12 @@ header("Access-Control-Allow-Methods: DELETE");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-require_once '../../config.php';
+// Use local config if exists, otherwise use production config
+if (file_exists('../../config.local.php')) {
+    require_once '../../config.local.php';
+} else {
+    require_once '../../config.php';
+}
 
 // Get ID from URL parameter
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;

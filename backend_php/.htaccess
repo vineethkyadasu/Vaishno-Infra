@@ -15,53 +15,53 @@ RewriteRule ^(.*)$ - [R=204,L]
 # API Routes (assuming this .htaccess is in backend_php/)
 
 # Auth routes
-RewriteRule ^api/auth/login$ api/auth/login.php [L,QSA]
+RewriteRule ^auth/login/?$ api/auth/login.php [L,QSA]
 
 # Projects routes
 RewriteCond %{REQUEST_METHOD} GET
-RewriteRule ^api/projects$ api/projects/read.php [L,QSA]
+RewriteRule ^projects/?$ api/projects/read.php [L,QSA]
 
 RewriteCond %{REQUEST_METHOD} GET
-RewriteRule ^api/projects/([0-9]+)$ api/projects/read_one.php?id=$1 [L,QSA]
+RewriteRule ^projects/([0-9]+)/?$ api/projects/read_one.php?id=$1 [L,QSA]
 
 RewriteCond %{REQUEST_METHOD} POST
-RewriteRule ^api/projects$ api/projects/create.php [L,QSA]
+RewriteRule ^projects/?$ api/projects/create.php [L,QSA]
 
 # Multi-part POST for updates
 RewriteCond %{REQUEST_METHOD} POST
-RewriteRule ^api/projects/([0-9]+)$ api/projects/update.php?id=$1 [L,QSA]
+RewriteRule ^projects/([0-9]+)/?$ api/projects/update.php?id=$1 [L,QSA]
 
 RewriteCond %{REQUEST_METHOD} PUT
-RewriteRule ^api/projects/([0-9]+)$ api/projects/update.php?id=$1 [L,QSA]
+RewriteRule ^projects/([0-9]+)/?$ api/projects/update.php?id=$1 [L,QSA]
 
 RewriteCond %{REQUEST_METHOD} DELETE
-RewriteRule ^api/projects/([0-9]+)$ api/projects/delete.php?id=$1 [L,QSA]
+RewriteRule ^projects/([0-9]+)/?$ api/projects/delete.php?id=$1 [L,QSA]
 
 # Careers routes
 RewriteCond %{REQUEST_METHOD} GET
-RewriteRule ^api/careers$ api/careers/read.php [L,QSA]
+RewriteRule ^careers/?$ api/careers/read.php [L,QSA]
 
 RewriteCond %{REQUEST_METHOD} GET
-RewriteRule ^api/careers/([0-9]+)$ api/careers/read_one.php?id=$1 [L,QSA]
+RewriteRule ^careers/([0-9]+)/?$ api/careers/read_one.php?id=$1 [L,QSA]
 
 RewriteCond %{REQUEST_METHOD} POST
-RewriteRule ^api/careers$ api/careers/create.php [L,QSA]
+RewriteRule ^careers/?$ api/careers/create.php [L,QSA]
 
 RewriteCond %{REQUEST_METHOD} PUT
-RewriteRule ^api/careers/([0-9]+)$ api/careers/update.php?id=$1 [L,QSA]
+RewriteRule ^careers/([0-9]+)/?$ api/careers/update.php?id=$1 [L,QSA]
 
 RewriteCond %{REQUEST_METHOD} DELETE
-RewriteRule ^api/careers/([0-9]+)$ api/careers/delete.php?id=$1 [L,QSA]
+RewriteRule ^careers/([0-9]+)/?$ api/careers/delete.php?id=$1 [L,QSA]
 
 # Applications
 RewriteCond %{REQUEST_METHOD} POST
-RewriteRule ^api/applications$ api/applications/create.php [L,QSA]
+RewriteRule ^applications/?$ api/applications/create.php [L,QSA]
 
 RewriteCond %{REQUEST_METHOD} GET
-RewriteRule ^api/applications$ api/applications/read.php [L,QSA]
+RewriteRule ^applications/?$ api/applications/read.php [L,QSA]
 
 RewriteCond %{REQUEST_METHOD} DELETE
-RewriteRule ^api/applications/([0-9]+)$ api/applications/delete.php?id=$1 [L,QSA]
+RewriteRule ^applications/([0-9]+)/?$ api/applications/delete.php?id=$1 [L,QSA]
 
 # Uploads access
-RewriteRule ^api/uploads/(.*)$ uploads/$1 [L]
+RewriteRule ^uploads/(.*)$ uploads/$1 [L]

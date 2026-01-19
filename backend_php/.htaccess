@@ -35,7 +35,7 @@ RewriteCond %{REQUEST_METHOD} PUT
 RewriteRule ^projects/([0-9]+)/?$ api/projects/update.php?id=$1 [L,QSA,NC]
 
 RewriteCond %{REQUEST_METHOD} DELETE
-RewriteRule ^projects/([0-9]+)/?$ api/projects/read_one.php?id=$1 [L,QSA,NC]
+RewriteRule ^projects/([0-9]+)/?$ api/projects/delete.php?id=$1 [L,QSA,NC]
 
 # Careers routes
 RewriteCond %{REQUEST_METHOD} GET

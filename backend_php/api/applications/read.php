@@ -17,6 +17,12 @@ try {
         $app['_id'] = $app['id'];
         $app['jobTitle'] = $app['job_title']; // Map snake_case to camelCase
         $app['createdAt'] = $app['created_at'];
+
+        // Format resume path correctly
+        if (isset($app['resume']) && !empty($app['resume'])) {
+            $filename = basename($app['resume']);
+            $app['resume'] = '/api/uploads/' . $filename;
+        }
     }
     
     echo json_encode($apps);

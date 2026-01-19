@@ -10,44 +10,50 @@ RewriteBase /api/
 
 # Handle Options method
 RewriteCond %{REQUEST_METHOD} OPTIONS
-RewriteRule ^(.*)$ - [R=200,L]
+RewriteRule ^(.*)$ - [R=204,L]
 
-# Remove .php extension
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^(.*)$ $1.php [L]
+# Auth routes
+RewriteRule ^auth/login$ api/auth/login.php [L,QSA]
 
-# Routing for Projects
-# GET projects/123 -> projects/read_one.php?id=123
+# Projects routes
 RewriteCond %{REQUEST_METHOD} GET
-RewriteRule ^projects/([0-9]+)$ projects/read_one.php?id=$1 [L,QSA]
+RewriteRule ^projects$ api/projects/read.php [L,QSA]
 
-# PUT projects/123 -> projects/update.php?id=123
-RewriteCond %{REQUEST_METHOD} PUT [OR]
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^projects/([0-9]+)$ api/projects/read_one.php?id=$1 [L,QSA]
+
 RewriteCond %{REQUEST_METHOD} POST
-RewriteRule ^projects/([0-9]+)$ projects/update.php?id=$1 [L,QSA]
+RewriteRule ^projects$ api/projects/create.php [L,QSA]
 
-# DELETE projects/123 -> projects/delete.php?id=123
+RewriteCond %{REQUEST_METHOD} PUT
+RewriteRule ^projects/([0-9]+)$ api/projects/update.php?id=$1 [L,QSA]
+
 RewriteCond %{REQUEST_METHOD} DELETE
-RewriteRule ^projects/([0-9]+)$ projects/delete.php?id=$1 [L,QSA]
+RewriteRule ^projects/([0-9]+)$ api/projects/delete.php?id=$1 [L,QSA]
 
-# Routing for Careers
-# GET careers/123 -> careers/read_one.php?id=123
+# Careers routes
 RewriteCond %{REQUEST_METHOD} GET
-RewriteRule ^careers/([0-9]+)$ careers/read_one.php?id=$1 [L,QSA]
+RewriteRule ^careers$ api/careers/read.php [L,QSA]
 
-# PUT careers/123 -> careers/update.php?id=123
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^careers/([0-9]+)$ api/careers/read_one.php?id=$1 [L,QSA]
+
+RewriteCond %{REQUEST_METHOD} POST
+RewriteRule ^careers$ api/careers/create.php [L,QSA]
+
 RewriteCond %{REQUEST_METHOD} PUT
-RewriteRule ^careers/([0-9]+)$ careers/update.php?id=$1 [L,QSA]
-
-# DELETE careers/123 -> careers/delete.php?id=123
-RewriteCond %{REQUEST_METHOD} DELETE
-RewriteRule ^careers/([0-9]+)$ careers/delete.php?id=$1 [L,QSA]
-
-# Routing for Applications
-RewriteCond %{REQUEST_METHOD} PUT
-RewriteRule ^applications/([0-9]+)$ applications/update.php?id=$1 [L,QSA]
+RewriteRule ^careers/([0-9]+)$ api/careers/update.php?id=$1 [L,QSA]
 
 RewriteCond %{REQUEST_METHOD} DELETE
-RewriteRule ^applications/([0-9]+)$ applications/delete.php?id=$1 [L,QSA]
+RewriteRule ^careers/([0-9]+)$ api/careers/delete.php?id=$1 [L,QSA]
+
+# Applications
+RewriteCond %{REQUEST_METHOD} POST
+RewriteRule ^applications$ api/applications/create.php [L,QSA]
+
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^applications$ api/applications/read.php [L,QSA]
+
+RewriteCond %{REQUEST_METHOD} DELETE
+RewriteRule ^applications/([0-9]+)$ api/applications/delete.php?id=$1 [L,QSA]
 

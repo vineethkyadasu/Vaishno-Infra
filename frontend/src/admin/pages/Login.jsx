@@ -1,26 +1,40 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../utils/auth';
+import { login, getCurrentUser } from '../utils/auth';
 import { toast } from 'react-toastify';
 import { motion } from 'framer-motion';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
+
+    // Redirect if already logged in
+    useEffect(() => {
+        const user = getCurrentUser();
+        if (user && user.token) {
+            navigate('/admin/dashboard', { replace: true });
+        }
+    }, [navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
         try {
-            await login(email, password);
-            toast.success('Welcome back!');
-            // Small delay to ensure localStorage is synced, then navigate
-            setTimeout(() => {
-                navigate('/admin/dashboard', { replace: true });
-            }, 100);
+            const response = await login(email, password);
+            if (response && response.token) {
+                toast.success('Welcome back!');
+                // Use window.location for more reliable redirect
+                window.location.href = '/admin/dashboard';
+            } else {
+                toast.error('Login failed: Invalid response from server');
+            }
         } catch (err) {
             toast.error(err.response?.data?.message || 'Login failed');
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -67,9 +81,10 @@ const Login = () => {
                     </div>
                     <button
                         type="submit"
-                        className="w-full bg-admin-primary-600 hover:bg-admin-primary-500 text-white font-bold py-3 rounded-lg transition-colors duration-300"
+                        disabled={isLoading}
+                        className="w-full bg-admin-primary-600 hover:bg-admin-primary-500 text-white font-bold py-3 rounded-lg transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                        Sign In
+                        {isLoading ? 'Signing in...' : 'Sign In'}
                     </button>
                 </form>
             </motion.div>

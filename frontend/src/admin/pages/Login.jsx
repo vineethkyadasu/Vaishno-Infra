@@ -15,8 +15,10 @@ const Login = () => {
         try {
             await login(email, password);
             toast.success('Welcome back!');
-            // Use window.location for reliable redirect
-            window.location.href = '/admin/dashboard';
+            // Small delay to ensure localStorage is synced, then navigate
+            setTimeout(() => {
+                navigate('/admin/dashboard', { replace: true });
+            }, 100);
         } catch (err) {
             toast.error(err.response?.data?.message || 'Login failed');
         }

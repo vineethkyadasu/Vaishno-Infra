@@ -85,7 +85,7 @@ const Careers = () => {
         try {
             const data = new FormData();
             data.append('jobTitle', selectedJob.title);
-            data.append('jobId', selectedJob._id); // Assuming _id exists from API
+            data.append('jobId', selectedJob.id || '');
             data.append('name', formData.name);
             data.append('email', formData.email);
             data.append('phone', formData.phone);

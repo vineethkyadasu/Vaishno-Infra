@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $targetPath = $uploadDir . $fileName;
             
             if (move_uploaded_file($_FILES['resume']['tmp_name'], $targetPath)) {
-                $resumeUrl = 'backend_php/uploads/' . $fileName; 
+                $resumeUrl = $fileName; 
             } else {
                 throw new Exception("Failed to upload resume.");
             }
@@ -36,7 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         $jobTitle = $_POST['jobTitle'] ?? 'General Application';
-        $jobId = $_POST['jobId'] ?? null;
+        $jobIdInput = $_POST['jobId'] ?? null;
+        $jobId = (is_numeric($jobIdInput) && intval($jobIdInput) > 0) ? intval($jobIdInput) : null;
         $name = $_POST['name'] ?? '';
         $email = $_POST['email'] ?? '';
         $phone = $_POST['phone'] ?? '';

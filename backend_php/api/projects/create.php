@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             if (move_uploaded_file($_FILES['image']['tmp_name'], $targetPath)) {
                 // Return relative path for frontend to prepend domain
-                $imageUrl = 'backend_php/uploads/' . $fileName; 
+                $imageUrl = '/api/uploads/' . $fileName; 
             } else {
                 throw new Exception("Failed to upload image.");
             }

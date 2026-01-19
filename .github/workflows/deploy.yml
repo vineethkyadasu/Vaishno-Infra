@@ -32,28 +32,24 @@ jobs:
         CI: false
         GENERATE_SOURCEMAP: false
 
-    # Install sshpass for password-based SSH
-    - name: Install sshpass
-      run: sudo apt-get update && sudo apt-get install -y sshpass
+    # Install lftp for FTP deployment
+    - name: Install lftp
+      run: sudo apt-get update && sudo apt-get install -y lftp
 
-    # Deploy Frontend using rsync over SSH
+    # Deploy Frontend using FTP
     - name: Deploy Frontend to Hostinger
       env:
-        SSH_HOST: ${{ secrets.HOSTINGER_FTP_SERVER }}
-        SSH_USER: ${{ secrets.HOSTINGER_FTP_USERNAME }}
-        SSH_PASS: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+        FTP_HOST: ${{ secrets.HOSTINGER_FTP_SERVER }}
+        FTP_USER: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+        FTP_PASS: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
       run: |
-        sshpass -p "$SSH_PASS" rsync -avz --delete \
-          -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 65002" \
-          ./frontend/dist/ ${SSH_USER}@${SSH_HOST}:~/public_html/
+        lftp -e "set ssl:verify-certificate no; set ftp:ssl-allow yes; mirror -R --delete --verbose ./frontend/dist/ /public_html/; quit" -u "$FTP_USER","$FTP_PASS" ftp://$FTP_HOST
 
-    # Deploy Backend PHP using rsync over SSH  
+    # Deploy Backend PHP using FTP  
     - name: Deploy Backend PHP to Hostinger
       env:
-        SSH_HOST: ${{ secrets.HOSTINGER_FTP_SERVER }}
-        SSH_USER: ${{ secrets.HOSTINGER_FTP_USERNAME }}
-        SSH_PASS: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+        FTP_HOST: ${{ secrets.HOSTINGER_FTP_SERVER }}
+        FTP_USER: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+        FTP_PASS: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
       run: |
-        sshpass -p "$SSH_PASS" rsync -avz --delete \
-          -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -p 65002" \
-          ./backend_php/ ${SSH_USER}@${SSH_HOST}:~/public_html/api/
+        lftp -e "set ssl:verify-certificate no; set ftp:ssl-allow yes; mirror -R --delete --verbose ./backend_php/ /public_html/api/; quit" -u "$FTP_USER","$FTP_PASS" ftp://$FTP_HOST

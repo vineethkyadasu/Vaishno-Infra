@@ -172,7 +172,7 @@ const Projects = () => {
                             </button>
                         </div>
                         <form onSubmit={handleSubmit} className="p-6 space-y-6">
-                            <div className="grid grid-cols-2 gap-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label className="block text-gray-300 text-sm font-medium mb-2">Title</label>
                                     <input

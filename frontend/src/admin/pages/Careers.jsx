@@ -111,8 +111,8 @@ const Careers = () => {
                 </button>
             </div>
 
-            <div className="bg-admin-navy-800 rounded-xl border border-gray-700 overflow-hidden">
-                <table className="w-full text-left text-gray-300">
+            <div className="bg-admin-navy-800 rounded-xl border border-gray-700 overflow-hidden overflow-x-auto">
+                <table className="w-full text-left text-gray-300 min-w-[600px]">
                     <thead className="bg-admin-navy-900 text-gray-400 text-xs uppercase tracking-wider">
                         <tr>
                             <th className="p-4 font-semibold">Job Title</th>
@@ -166,7 +166,7 @@ const Careers = () => {
                                     required
                                 />
                             </div>
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label className="block text-gray-300 text-sm font-medium mb-2">Location</label>
                                     <input

@@ -3,7 +3,12 @@
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-require_once '../../config.php';
+// Use local config if exists, otherwise use production config
+if (file_exists('../../config.local.php')) {
+    require_once '../../config.local.php';
+} else {
+    require_once '../../config.php';
+}
 
 try {
     $query = "SELECT * FROM applications ORDER BY created_at DESC";

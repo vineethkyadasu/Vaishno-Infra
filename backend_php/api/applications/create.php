@@ -6,7 +6,12 @@ header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-require_once '../../config.php';
+// Use local config if exists, otherwise use production config
+if (file_exists('../../config.local.php')) {
+    require_once '../../config.local.php';
+} else {
+    require_once '../../config.php';
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {

@@ -4,3 +4,9 @@ dist
 .DS_Store
 .vscode
 coverage
+
+# Local development only - do not deploy
+backend_php/config.local.php
+backend_php/database/
+backend_php/test_*.php
+frontend/.env.local

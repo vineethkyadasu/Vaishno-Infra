@@ -6,7 +6,12 @@ header("Access-Control-Allow-Methods: PUT"); // Allow PUT
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-require_once '../../config.php';
+// Use local config if exists, otherwise use production config
+if (file_exists('../../config.local.php')) {
+    require_once '../../config.local.php';
+} else {
+    require_once '../../config.php';
+}
 
 $data = json_decode(file_get_contents("php://input"));
 $id = isset($_GET['id']) ? $_GET['id'] : die();

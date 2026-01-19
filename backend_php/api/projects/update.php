@@ -41,7 +41,7 @@ try {
         $targetPath = $uploadDir . $fileName;
         
         if (move_uploaded_file($_FILES['image']['tmp_name'], $targetPath)) {
-            $imageUrl = '/api/uploads/' . $fileName;
+            $imageUrl = $fileName;
         }
     }
     

@@ -14,17 +14,13 @@ try {
     
     // Fix image paths and decode JSON features field
     foreach ($projects as &$project) {
-        // Fix legacy paths
-        if (isset($project['image'])) {
-            $project['image'] = str_replace('backend_php/uploads/', '/api/uploads/', $project['image']);
-            if (strpos($project['image'], 'api/uploads/') === 0) {
-                $project['image'] = '/' . $project['image'];
-            }
+        if (isset($project['image']) && !empty($project['image'])) {
+            $filename = basename($project['image']);
+            $project['image'] = '/api/uploads/' . $filename;
         }
         
         if (isset($project['features'])) {
             $project['features'] = json_decode($project['features']);
-            // Handle migrated/empty data
             if ($project['features'] === null) $project['features'] = []; 
         }
     }

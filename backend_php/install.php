@@ -14,12 +14,12 @@ try {
     echo "Users table created successfully.<br>";
 
     // Create default admin user if not exists
-    // Default: admin / admin123 (hashed)
-    $stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE username = 'admin'");
+    // Default: sainithin9505@gmail.com / 123456789 (hashed)
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM users WHERE username = 'sainithin9505@gmail.com'");
     $stmt->execute();
     if ($stmt->fetchColumn() == 0) {
-        $password = password_hash('admin123', PASSWORD_BCRYPT);
-        $sql = "INSERT INTO users (username, password) VALUES ('admin', '$password')";
+        $password = password_hash('123456789', PASSWORD_BCRYPT);
+        $sql = "INSERT INTO users (username, password) VALUES ('sainithin9505@gmail.com', '$password')";
         $pdo->exec($sql);
         echo "Default admin user created.<br>";
     }

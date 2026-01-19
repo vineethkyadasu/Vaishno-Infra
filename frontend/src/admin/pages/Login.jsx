@@ -14,8 +14,9 @@ const Login = () => {
         e.preventDefault();
         try {
             await login(email, password);
-            navigate('/admin/dashboard');
             toast.success('Welcome back!');
+            // Use window.location for reliable redirect
+            window.location.href = '/admin/dashboard';
         } catch (err) {
             toast.error(err.response?.data?.message || 'Login failed');
         }

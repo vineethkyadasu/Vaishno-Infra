@@ -21,7 +21,7 @@ const AdminRoutes = () => {
             <ToastContainer theme="dark" position="top-right" />
             <Routes>
                 <Route path="login" element={<Login />} />
-                <Route path="/" element={<PrivateRoute><Layout /></PrivateRoute>}>
+                <Route path="*" element={<PrivateRoute><Layout /></PrivateRoute>}>
                     <Route index element={<Navigate to="dashboard" replace />} />
                     <Route path="dashboard" element={<Dashboard />} />
                     <Route path="projects" element={<Projects />} />

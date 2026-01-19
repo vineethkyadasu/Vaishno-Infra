@@ -91,7 +91,7 @@ const Projects = () => {
         try {
             const config = { headers: { ...authHeader(), 'Content-Type': 'multipart/form-data' } };
             if (isEditing) {
-                await axios.put(`${API_URL}/${currentProject._id}`, data, config);
+                await axios.put(`${API_URL}/${currentProject.id}`, data, config);
                 toast.success('Project updated successfully');
             } else {
                 await axios.post(API_URL, data, config);
@@ -130,7 +130,7 @@ const Projects = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {projects.map((project) => (
-                    <div key={project._id} className="bg-admin-navy-800 rounded-xl border border-gray-700 overflow-hidden shadow-lg group">
+                    <div key={project.id} className="bg-admin-navy-800 rounded-xl border border-gray-700 overflow-hidden shadow-lg group">
                         <div className="relative h-48 overflow-hidden">
                             <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
                             <div className="absolute top-2 right-2 flex space-x-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -141,7 +141,7 @@ const Projects = () => {
                                     <HiPencil />
                                 </button>
                                 <button
-                                    onClick={() => handleDelete(project._id)}
+                                    onClick={() => handleDelete(project.id)}
                                     className="p-2 bg-red-600 text-white rounded-full hover:bg-red-500"
                                 >
                                     <HiTrash />

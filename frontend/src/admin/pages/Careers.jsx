@@ -74,7 +74,7 @@ const Careers = () => {
         try {
             const config = { headers: authHeader() };
             if (isEditing) {
-                await axios.put(`${API_URL}/${currentCareer._id}`, data, config);
+                await axios.put(`${API_URL}/${currentCareer.id}`, data, config);
                 toast.success('Position updated');
             } else {
                 await axios.post(API_URL, data, config);
@@ -123,7 +123,7 @@ const Careers = () => {
                     </thead>
                     <tbody className="divide-y divide-gray-700">
                         {careers.map((career) => (
-                            <tr key={career._id} className="hover:bg-gray-800/50 transition-colors">
+                            <tr key={career.id} className="hover:bg-gray-800/50 transition-colors">
                                 <td className="p-4 font-medium text-white">{career.title}</td>
                                 <td className="p-4">{career.location}</td>
                                 <td className="p-4">
@@ -135,7 +135,7 @@ const Careers = () => {
                                     <button onClick={() => openModal(career)} className="text-admin-primary-400 hover:text-white mr-3">
                                         <HiPencil className="text-xl" />
                                     </button>
-                                    <button onClick={() => handleDelete(career._id)} className="text-red-400 hover:text-white">
+                                    <button onClick={() => handleDelete(career.id)} className="text-red-400 hover:text-white">
                                         <HiTrash className="text-xl" />
                                     </button>
                                 </td>

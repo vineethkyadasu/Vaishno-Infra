@@ -98,7 +98,7 @@ const Applications = () => {
                                 </tr>
                             ) : (
                                 filteredApplications.map((app) => (
-                                    <tr key={app._id} className="hover:bg-admin-navy-700/50 transition-colors">
+                                    <tr key={app.id} className="hover:bg-admin-navy-700/50 transition-colors">
                                         <td className="px-6 py-4">
                                             <div className="font-medium text-white">{app.name}</div>
                                             <div className="text-sm text-gray-500">{app.email}</div>
@@ -128,7 +128,7 @@ const Applications = () => {
                                         <td className="px-6 py-4">
                                             <select
                                                 value={app.status}
-                                                onChange={(e) => handleStatusUpdate(app._id, e.target.value)}
+                                                onChange={(e) => handleStatusUpdate(app.id, e.target.value)}
                                                 className={`text-sm rounded-lg px-3 py-1 border-0 cursor-pointer focus:ring-2 focus:ring-admin-primary-500 ${app.status === 'Applied' ? 'bg-blue-500/20 text-blue-400' :
                                                     app.status === 'Reviewed' ? 'bg-yellow-500/20 text-yellow-400' :
                                                         app.status === 'Interview' ? 'bg-purple-500/20 text-purple-400' :
@@ -145,7 +145,7 @@ const Applications = () => {
                                         </td>
                                         <td className="px-6 py-4">
                                             <button
-                                                onClick={() => handleDelete(app._id)}
+                                                onClick={() => handleDelete(app.id)}
                                                 className="text-red-400 hover:text-red-300 hover:bg-red-400/10 p-2 rounded-lg transition-colors"
                                                 title="Delete Application"
                                             >
